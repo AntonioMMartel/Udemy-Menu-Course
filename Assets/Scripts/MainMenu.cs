@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
 
-    public String firstLevel;
+    public String firstLevelScene;
+    public GameObject optionsMenu;
+    public GameObject canvas;
 
 
     // Start is called before the first frame update
@@ -23,13 +25,13 @@ public class MainMenu : MonoBehaviour
     }
 
     public void StartGame(){
-        SceneManager.LoadScene(firstLevel);
+        SceneManager.LoadScene(firstLevelScene);
     }
 
-    public void CloseOptions() {
-        
-    }
     public void OpenOptions() {
+        GameObject optionsMenuPrefab = Instantiate(optionsMenu, canvas.transform);
+        optionsMenuPrefab.name = "Options Menu";
+
 
     }
     
