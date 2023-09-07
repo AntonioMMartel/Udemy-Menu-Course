@@ -338,7 +338,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 416201545326269101}
         m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
-        m_MethodName: CloseOptions
+        m_MethodName: CloseMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

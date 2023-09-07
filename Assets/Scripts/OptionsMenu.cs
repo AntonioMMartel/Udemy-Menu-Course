@@ -22,7 +22,7 @@ public class OptionsMenu : MonoBehaviour
     }
 
     
-    public void CloseOptions() {
+    public void CloseMenu() {
         Destroy(optionsMenu);
     }
 
@@ -30,7 +30,7 @@ public class OptionsMenu : MonoBehaviour
         Instantiate(graphicsMenu, optionsMenu.transform);
     }
 
-        public void OpenSoundsMenu() {
+    public void OpenSoundsMenu() {
         Instantiate(soundsMenu, optionsMenu.transform);
     }
 }

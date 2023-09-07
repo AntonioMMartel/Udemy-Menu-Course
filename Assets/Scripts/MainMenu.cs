@@ -31,8 +31,6 @@ public class MainMenu : MonoBehaviour
     public void OpenOptions() {
         GameObject optionsMenuPrefab = Instantiate(optionsMenu, canvas.transform);
         optionsMenuPrefab.name = "Options Menu";
-
-
     }
     
     public void QuitGame() {
