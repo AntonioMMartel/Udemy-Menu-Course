@@ -20,7 +20,25 @@ public class GraphicsMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        fullscreenToggle.isOn = Screen.fullScreen;
+        if(QualitySettings.vSyncCount == 0){
+            vsyncToggle.isOn = false;
+        } else {
+            vsyncToggle.isOn = true;
+        }
         
+        bool foundRes = false;
+        for(int i = 0; i <= resolutions.Length; i++){
+            if(Screen.width == resolutions[i].horizontal && Screen.width == resolutions[i].vertical){
+                foundRes = true;
+                selectedResolution = i;
+                updateResolutionLabel();
+            }
+        }
+
+        if(!foundRes){
+            resolutionLabel.text = Screen.width.ToString() + " x " + Screen.height.ToString();
+        }
     }
 
     // Update is called once per frame
