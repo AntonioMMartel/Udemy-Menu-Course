@@ -1048,7 +1048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 500a6aa0ade83c54ab11a2077d23644e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstLevelScene: Pause Setup
+  firstLevelScene: Game
   optionsMenu: {fileID: 6711587631316834565, guid: cae5f324347cb134cbc6c01527b8e099, type: 3}
   canvas: {fileID: 1398810411}
 --- !u!1 &1979590861
@@ -1258,6 +1258,14 @@ PrefabInstance:
     - target: {fileID: 1088114559423749358, guid: 9ceaadafa14774745a1596e71f4bc38e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088114560156486214, guid: 9ceaadafa14774745a1596e71f4bc38e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1398810416}
+    - target: {fileID: 1088114560156486214, guid: 9ceaadafa14774745a1596e71f4bc38e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartGame
       objectReference: {fileID: 0}
     - target: {fileID: 8731669932512288407, guid: 9ceaadafa14774745a1596e71f4bc38e, type: 3}
       propertyPath: m_FontData.m_VerticalOverflow

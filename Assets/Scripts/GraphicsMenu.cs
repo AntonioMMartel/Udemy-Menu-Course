@@ -33,6 +33,7 @@ public class GraphicsMenu : MonoBehaviour
                 foundRes = true;
                 selectedResolution = i;
                 updateResolutionLabel();
+                
             }
         }
 
