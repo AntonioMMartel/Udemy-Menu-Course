@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject optionsMenu, canvas, pauseMenu;
+    public GameObject optionsMenu, canvas, pauseMenu, loadingScreen, loadingIcon;
     public string mainMenuScene;
+    public Text loadedText, loadingText;
+
 
     bool isPaused = false;
 
@@ -16,7 +19,7 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         pauseMenu.SetActive(false);
-        
+
     }
 
     // Update is called once per frame
@@ -49,7 +52,39 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void mainMenu() {
-        SceneManager.LoadScene(mainMenuScene);
+        //SceneManager.LoadScene(mainMenuScene);
+
+        StartCoroutine(LoadMain());
+    }
+
+    public IEnumerator LoadMain()
+    {
+
+        loadingScreen.SetActive(true);
+        pauseMenu.SetActive(false);
+
+
+        // Load scene async
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(mainMenuScene);
+
+        // Press button to continue
+        asyncLoad.allowSceneActivation = false;
+
+        while(!asyncLoad.isDone)
+        {
+            if(asyncLoad.progress >= .9f)
+            {
+                loadedText.text = "Press Any button to start";
+                loadingText.text = "Loaded";
+                loadingIcon.SetActive(false);
+                if(Input.anyKeyDown)
+                {
+                    asyncLoad.allowSceneActivation = true;
+                    Time.timeScale = 1f;
+                }
+            }
+            yield return null;
+        }
     }
 
 }

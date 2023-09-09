@@ -4,16 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
 
     public String firstLevelScene;
-    public GameObject optionsMenu;
+    public GameObject optionsMenu, loadingScreen, loadingIcon;
     public GameObject canvas;
-
-    
-
+    public Text loadingText, loadedText;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +27,8 @@ public class MainMenu : MonoBehaviour
     }
 
     public void StartGame(){
-        SceneManager.LoadScene(firstLevelScene);
+        //SceneManager.LoadScene(firstLevelScene);
+        StartCoroutine(LoadGame());
     }
 
     public void OpenOptions() {
@@ -40,6 +40,35 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
+
+    public IEnumerator LoadGame()
+    {
+
+        loadingScreen.SetActive(true);
+
+
+        // Load scene async
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(firstLevelScene);
+
+        // Press button to continue
+        asyncLoad.allowSceneActivation = false;
+
+        while (!asyncLoad.isDone)
+        {
+            if (asyncLoad.progress >= .9f)
+            {
+                loadedText.text = "Press Any button to start";
+                loadingText.text = "Loaded";
+                loadingIcon.SetActive(false);
+                if (Input.anyKeyDown)
+                {
+                    asyncLoad.allowSceneActivation = true;
+                    Time.timeScale = 1f;
+                }
+            }
+            yield return null;
+        }
+    }
 }   
 
 
